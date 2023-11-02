@@ -2,7 +2,6 @@
 let winner = false;
 let turn = true;
 window.addEventListener("DOMContentLoaded", event => {
-    
 
     const playAreaArr = document.querySelectorAll(".area-wrapper");
 
@@ -47,15 +46,7 @@ window.addEventListener("DOMContentLoaded", event => {
     const newGame = document.querySelector("#new-game");
 
     newGame.addEventListener("click", event => {
-        if (event.target.className === "enabled") {
-            document.querySelectorAll("div.label").forEach(ele => {
-                ele.innerText = "";
-                ele.IdName = "";
-                winner = false;
-            });
-            document.querySelector("h1").innerText = "";
-            event.target.className = "";
-        }
+        window.location.href = "index.html";
     });
 
     const giveUp = document.querySelector("#give-up");
@@ -67,23 +58,21 @@ window.addEventListener("DOMContentLoaded", event => {
 
 // Helper Functions
 
-const gridMatrix = [
-    new Array(3).fill(null),
-    new Array(3).fill(null),
-    new Array(3).fill(null)
-];
+const gridMatrix = new Array(new Array(3).fill(null), new Array(3).fill(null), new Array(3).fill(null));
 
 const updateResults = () => {
     const gridArr = document.querySelectorAll(".label");
-    console.log(gridArr);
     gridArr.forEach((ele, i) => {
-        if (ele.innerText && i < 3) gridMatrix[0][i] = ele.innerText;
-        else if (ele.innerText && i < 6) gridMatrix[1][i - 3] = ele.innerText;
-        else if (ele.innerText) gridMatrix[2][i - 6] = ele.innerText;
+        if (ele.innerText && i < 3) gridMatrix[0][i] = ele.innerText
+        else if (ele.innerText && i < 6) gridMatrix[1][i - 3] = ele.innerText
+        else if (ele.innerText) gridMatrix[2][i - 6] = ele.innerText
     });
 
     const result = checkForWin(gridMatrix);
-    if (result) displayWinner();
+    if (result) {
+        winner = true;
+        displayWinner();
+    }
 };
 
 const checkForWin = board => {
@@ -114,5 +103,4 @@ const displayWinner = () => {
     if (!winner) header.innerText = "Lost!";
     else if (turn) header.innerText = "Winner O!";
     else header.innerText = "Winner X!";
-    winner = true;
 };
