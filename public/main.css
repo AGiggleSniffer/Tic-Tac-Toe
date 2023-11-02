@@ -1,0 +1,104 @@
+/* Main */
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1 {
+    animation: distort .5s linear infinite;
+    font-size: 100px;
+    font-family: inherit;
+}
+
+/* Grid Area */
+
+div#play-area {
+    display: grid;
+    height: 70vh;
+    width: 70vh;
+    grid-template: 
+        "div div div" 1fr
+        "div div div" 1fr
+        "div div div" 1fr 
+        / 1fr 1fr 1fr;
+
+    grid-column-gap: 2%;
+    grid-row-gap: 2%;
+    background-color: black;
+    filter: url('#shake0');
+}
+
+/* Play Buttons */
+
+div.area-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+div.area-wrapper button, .label{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+div.area-wrapper button {
+    background: white;
+    outline: none;
+    border: none;
+}
+
+div.area-wrapper:hover div.label{
+    animation: distort .5s linear infinite;
+}
+
+.label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-align: center;
+    font-size: 75px;
+    font-family: inherit;
+    text-shadow: 10px 5px 5px black;
+    filter: url('#shake0');
+}
+
+/* Footer Buttons */
+
+div#buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20vh;
+    width: 75vh;
+    filter: url("#shake0");
+}
+
+div#buttons button {
+    outline: none;
+    border: black solid .3em;
+    height: 50%;
+    width: 40%;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: inherit;
+}
+
+div#buttons button.enabled:hover {
+    box-shadow: 10px 5px 5px black;
+    animation: distort .5s linear infinite;
+}
+
+/* Animation */
+
+@keyframes distort {
+    0% { filter: url("#shake0"); }
+    25% { filter: url("#shake1"); }
+    50% { filter: url("#shake2"); }
+    75% { filter: url("#shake3"); }
+    100% { filter: url("#shake4"); }
+}
